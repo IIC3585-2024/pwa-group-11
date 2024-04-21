@@ -8,5 +8,12 @@
   "background_color": "#2f3d58",
   "theme_color": "#2f3d58",
   "orientation": "any",
-  "display": "standalone"
+  "display": "standalone",
+  "icons": [
+      {
+          "src": "/pwa-group-11/icon512.png",
+          "sizes": "512x512",
+          "type": "image/png"
+      }
+  ]
 }
