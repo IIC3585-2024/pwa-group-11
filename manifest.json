@@ -8,4 +8,10 @@
   "theme_color": "#2f3d58",
   "orientation": "any",
   "display": "standalone",
+  "icons": [
+      {
+          "src": "./pwa-group-11/icon512.png",
+          "sizes": "512x512"
+      }
+  ]
 }
