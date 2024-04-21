@@ -7,7 +7,8 @@ self.addEventListener('install', event => {
     cache.addAll([
       '/pwa-group-11/',
       '/pwa-group-11/converter.js',
-      '/pwa-group-11/converter.css'
+      '/pwa-group-11/converter.css',
+      '/pwa-group-11/icon512.png'
     ]);
   })());
 });
