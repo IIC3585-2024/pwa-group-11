@@ -2,3 +2,5 @@
 pwa-group-11 created by GitHub Classroom
 
 pagina: https://iic3585-2024.github.io/pwa-group-11/
+
+tutorial: https://learn.microsoft.com/es-es/microsoft-edge/progressive-web-apps-chromium/how-to/  
