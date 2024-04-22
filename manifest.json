@@ -1,19 +1,23 @@
 {
-  "lang": "en-us",
-  "name": "Temperature converter app",
-  "short_name": "Temperature converter",
-  "description": "A basic temperature converter application that can convert to and from Celsius, Kelvin, and Fahrenheit",
-  "id": "/pwa-group-11/",
-  "start_url": "/pwa-group-11/",
-  "background_color": "#2f3d58",
-  "theme_color": "#2f3d58",
-  "orientation": "any",
-  "display": "standalone",
-  "icons": [
-      {
+    "theme_color": "#9013fe",
+    "background_color": "#9013fe",
+    "display": "standalone",
+    "scope": "/pwa-group-11/",
+    "start_url": "/pwa-group-11/",
+    "name": "LofiPro create lofi songs",
+    "short_name": "LofiPro",
+    "description": "Upload your song convert your song to lofi slow and reverbed then play and enjoy ",
+    "icons": [
+        {
+            "src": "/pwa-group-11/icon512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "screenshots": [
+        {
           "src": "/pwa-group-11/icon512.png",
-          "sizes": "512x512",
           "type": "image/png"
-      }
-  ]
+        }
+     ]
 }
