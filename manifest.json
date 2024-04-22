@@ -17,6 +17,7 @@
     "screenshots": [
         {
           "src": "/pwa-group-11/icon512.png",
+          "sizes": "512x512",
           "type": "image/png"
         }
      ]
