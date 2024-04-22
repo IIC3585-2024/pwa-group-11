@@ -18,6 +18,7 @@
         {
           "src": "/pwa-group-11/icon512.png",
           "sizes": "512x512",
+          "form_factor": "wide",
           "type": "image/png"
         }
      ]
