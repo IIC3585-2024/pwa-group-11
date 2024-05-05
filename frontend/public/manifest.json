@@ -1,0 +1,29 @@
+{
+  "theme_color": "#2596be",
+  "background_color": "#2596be",
+  "display": "standalone",
+  "scope": "/",
+  "start_url": "/",
+  "name": "Split Grupo 11",
+  "short_name": "Split",
+  "description": "Create event, add users and their expenses. Split will calculate who owes who and how much exactly.",
+  "icons": [
+      {
+        "src": "logo192.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      },
+      {
+        "src": "logo512.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      }
+  ],
+  "screenshots": [
+      {
+        "src": "/logo512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ]
+}
