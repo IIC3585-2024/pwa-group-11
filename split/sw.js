@@ -5,10 +5,13 @@ self.addEventListener('install', event => {
   event.waitUntil((async () => {
     const cache = await caches.open(CACHE_NAME);
     cache.addAll([
-      '/pwa-group-11/',
-      '/pwa-group-11/converter.js',
-      '/pwa-group-11/converter.css',
-      '/pwa-group-11/icon512.png'
+      '/',
+      '/public/index.html',
+      '/public/logo512.png',
+      // '/pwa-group-11/',
+      // '/pwa-group-11/converter.js',
+      // '/pwa-group-11/converter.css',
+      // '/pwa-group-11/logo.png'
     ]);
   })());
 });
