@@ -1,0 +1,11 @@
+{
+  "files": {
+    "main.js": "/pwa-group-11/static/js/main.e48c19bd.js",
+    "service-worker.js": "/pwa-group-11/service-worker.js",
+    "index.html": "/pwa-group-11/index.html",
+    "main.e48c19bd.js.map": "/pwa-group-11/static/js/main.e48c19bd.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.e48c19bd.js"
+  ]
+}
