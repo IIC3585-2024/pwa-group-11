@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { post, getUserByName } from '../api/functions';
+import { post, getUserByName } from '../api';
+import '../css/transactionForm.css'; 
 
 function TransactionForm() {
     const history = useHistory();
@@ -34,9 +35,10 @@ function TransactionForm() {
     };
 
     return (
-        <div>
-            <button onClick={handleClickBack}>Atrás</button>
-            <form onSubmit={handleSubmit}>
+        <div className="transaction-form-container">
+            <button onClick={handleClickBack} className="back-button">Atrás</button>
+            <h1 className="tittle-text">Nueva transacción</h1>
+            <form onSubmit={handleSubmit} className="transaction-form">
                 <input
                     type="text"
                     value={transactionName}

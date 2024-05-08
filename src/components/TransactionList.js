@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getTransactionsByTransactionId, getUsersById } from '../services/functions';
+import { getTransactionsByTransactionId, get } from '../api';
 
 function TransactionList() {
     const [transactions, setTransactions] = useState([]);
@@ -9,7 +9,7 @@ function TransactionList() {
         getTransactionsByTransactionId("transactions").then((response) => {
             setTransactions(Object.values(response));
         });
-        getUsersById("users").then((response) => {
+        get("users").then((response) => {
             setUsers(response);
         });
     }, [transactions]);

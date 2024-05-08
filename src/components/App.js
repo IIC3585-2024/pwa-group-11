@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 import TransactionList from './TransactionList';
 import Summary from './Summary';
+import imagen from '../assets/icons8-add-30.png';
 import '../css/buttonAdd.css'; 
 
-function Home() {
+function App() {
   const history = useHistory();
 
   const handleClick = () => {
@@ -18,9 +19,9 @@ function Home() {
       
       <h1>Transacciones:</h1>
       <TransactionList />
-      <button className="button-add" onClick={handleClick}>+</button>
+      <button className="button-add" onClick={handleClick}><img src={imagen} alt="Boton agregar transaccion" /></button>
     </div>
   );
 }
 
-export default Home;
+export default App;
