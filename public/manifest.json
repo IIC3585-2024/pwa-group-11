@@ -27,5 +27,6 @@
         "form_factor": "wide"
       }
   ],
-  "form_factor": "wide"
+  "form_factor": "wide",
+  "gcm_sender_id": "103953800507"
 }

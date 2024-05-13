@@ -11,29 +11,7 @@
 // opt-in, read https://cra.link/PWA
 
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-import { getMessaging } from "firebase/messaging";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyDnQ5zU0a3bXSfCexEVZ5BdjU6QnAcukfI",
-  authDomain: "pwa-grupo-11.firebaseapp.com",
-  projectId: "pwa-grupo-11",
-  storageBucket: "pwa-grupo-11.appspot.com",
-  messagingSenderId: "542670622375",
-  appId: "1:542670622375:web:eaf6a0fa7f89fac2d55582",
-  measurementId: "G-BFZEWDRQ3P"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-// Initialize Firebase Cloud Messaging and get a reference to the service
-const messaging = getMessaging(app);
+import { messaging } from "./firebase-messaging-sw";
 
 const isLocalhost = Boolean(
   window.location.hostname === 'localhost' ||
@@ -75,24 +53,48 @@ export function register(config) {
       }
     });
 
-    subscribeUserToNotifications()
+    requestNotificationPermission()
+  }
+};
+
+function requestNotificationPermission() {
+  try {
+    messaging.requestPermission();
+    const token = messaging.getToken()
+    console.log('Token de registro de FCM:', token);
+    // Envía el token de registro al servidor para almacenarlo
+  } catch (error) {
+    console.error('Error al solicitar permisos de notificación:', error);
   }
 }
+  
+  // if ('serviceWorker' in navigator) {
+  //   navigator.serviceWorker.register(new URL('../firebase-messaging-sw.js', import.meta.url), {type: 'module'})
+  //   .then(function(response) {
+  //     // Service worker registration done
+  //     console.log('Registration Successful', response);
+  //   }, function(error) {
+  //     // Service worker registration failed
+  //     console.log('Registration Failed', error);
+  //   })
+  // }
 
-function subscribeUserToNotifications() {
-  messaging.requestPermission()
-    .then(() => {
-      console.log('Permisos para notificaciones concedidos');
-      return messaging.getToken();
-    })
-    .then(token => {
-      console.log('Token de registro de FCM:', token);
-      // Envía el token de registro al servidor para almacenarlo
-    })
-    .catch(error => {
-      console.error('Error al solicitar permisos de notificación:', error);
-    });
-}
+
+// function subscribeUserToNotifications() {
+//   messaging.requestPermission()
+//     .then((token) => {
+//       console.log('Permisos para notificaciones concedidos');
+//       // getToken(messaging, {vapidKey: "BN6QcX5H0KLDpz0YbZKfQ4ZhvUgpUDNmKLzAki-HGlsLV0ihm0jxQFKbjheQ6bx9ygiIWhy-2AaHXle443g9mpE"});
+//       // return messaging.getToken();
+//     })
+//     .then(token => {
+//       console.log('Token de registro de FCM:', token);
+//       // Envía el token de registro al servidor para almacenarlo
+//     })
+//     .catch(error => {
+//       console.error('Error al solicitar permisos de notificación:', error);
+//     });
+// }
 
 function registerValidSW(swUrl, config) {
   navigator.serviceWorker

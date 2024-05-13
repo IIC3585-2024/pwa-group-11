@@ -28,6 +28,7 @@ function TransactionForm() {
         setTransactionPaidBy('');
         setUsers([]);
         history.push('/');
+        window.location.reload();
     };
 
     const handleClickBack = () => {
