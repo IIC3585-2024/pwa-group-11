@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import { get } from '../api';
 import { post, getUserByName } from '../api';
+import { prefix_url } from '../config';
+import { validateFormData } from '../helpers/helpers';
 import '../css/transactionForm.css'; 
 
 function TransactionForm() {
@@ -10,11 +13,27 @@ function TransactionForm() {
     const [transactionAmount, setTransactionAmount] = useState('');
     const [transactionPaidBy, setTransactionPaidBy] = useState('');
     const [users, setUsers] = useState([]);
+    const [allUsers, setAllUsers] = useState([]);
+    const [dropdownVisible, setDropdownVisible] = useState(false);
+
+    useEffect(() => {
+        get("users").then((response) => {
+            setAllUsers(response);
+            setTransactionPaidBy(response[0].name);
+        });
+    }, []);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         const id = Date.now();
-        
+
+        const { validate, error } = validateFormData(transactionName, transactionDate, transactionAmount, transactionPaidBy, users);
+        console.log(validate, error, transactionPaidBy)
+        if (!validate) {
+            alert(error);
+            return;
+        } 
+
         users.map(async (user) => {
             post("users", { name: user }).then(async (response) => {
                 const userIdPaidBy = await getUserByName(transactionPaidBy);
@@ -27,11 +46,22 @@ function TransactionForm() {
         setTransactionAmount('');
         setTransactionPaidBy('');
         setUsers([]);
-        history.push('/');
+        history.push(prefix_url + '/');
     };
 
     const handleClickBack = () => {
         history.goBack();
+    };
+    
+    const handleAddUser = (user) => {
+        setUsers([...users, user]);
+        setDropdownVisible(false);
+    };
+
+    const handleRemoveUser = (index) => {
+        const newUsers = [...users];
+        newUsers.splice(index, 1);
+        setUsers(newUsers);
     };
 
     return (
@@ -43,7 +73,7 @@ function TransactionForm() {
                     type="text"
                     value={transactionName}
                     onChange={e => setTransactionName(e.target.value)}
-                    placeholder="Enter transaction name"
+                    placeholder="Nombre evento"
                     required
                 />
                 <input
@@ -56,24 +86,42 @@ function TransactionForm() {
                     type="number"
                     value={transactionAmount}
                     onChange={e => setTransactionAmount(e.target.value)}
-                    placeholder="Enter transaction amount"
+                    placeholder="Monto"
                     required
                 />
-                <input
-                    type="text"
+                <label>Pagado por:</label>
+                <select
                     value={transactionPaidBy}
                     onChange={e => setTransactionPaidBy(e.target.value)}
-                    placeholder="Enter transaction paid by"
                     required
-                />
-                <input
-                    type="text"
-                    value={users}
-                    onChange={e => setUsers(e.target.value.split(','))}
-                    placeholder="Enter transaction users"
-                    required
-                />
-                <button type="submit">Add transaction</button>
+                >
+                    {allUsers.map(user => (
+                        <option key={user.id} value={user.name}>{user.name}</option>
+                    ))}
+                </select>
+
+                <label>Participantes:</label>
+                <div className="users-list">
+                    {users.map((user, index) => (
+                        <div key={index} className="user-item">
+                            <span>{user}</span>
+                            <button onClick={() => handleRemoveUser(index)}>X</button>
+                        </div>
+                    ))}
+                </div>
+
+                <div className="add-user-dropdown">
+                    <button  onClick={(e) => { e.preventDefault(); setDropdownVisible(!dropdownVisible); }}>Agregar usuario</button>
+                    {dropdownVisible && (
+                        <select onChange={e => handleAddUser(e.target.value)}>
+                            <option value="">Selecciona un usuario</option>
+                            {allUsers.map(user => (
+                                <option key={user.id} value={user.name}>{user.name}</option>
+                            ))}
+                        </select>
+                    )}  
+                </div>
+                <button type="submit">Agregar transacción</button>
             </form>
         </div>
     );

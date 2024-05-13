@@ -15,7 +15,9 @@ function TransactionList() {
     }, [transactions]);
 
     return (
-        <ul>
+        <div>
+          <h1>Transacciones:</h1>
+            <ul>        
             {transactions.map(transaction => (
                 <li key={transaction.transactionId}>
                 Nombre: {transaction.name} <br />
@@ -36,6 +38,7 @@ function TransactionList() {
             </li>
             ))}
         </ul>
+        </div>
     );
 }
 

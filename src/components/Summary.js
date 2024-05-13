@@ -21,6 +21,7 @@ function Summary() {
   
   return (        
     <div>
+      <h1>Resumen:</h1>
       {(transactions.length > 0 && users.length > 0)
       ? calculateDebt(transactions2, transactions).map((debt, index) => {
         return <div key={index}>

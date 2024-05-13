@@ -29,3 +29,20 @@
   margin: 10px;
   width: 80%;
 }
+
+.user-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.user-item span {
+  margin-right: 10px;
+}
+
+.user-item button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
