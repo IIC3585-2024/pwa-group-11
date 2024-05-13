@@ -1,11 +1,9 @@
+// Firebase Cloud Messaging Configuration File.
+// Read more at https://firebase.google.com/docs/cloud-messaging/js/client && https://firebase.google.com/docs/cloud-messaging/js/receive
+
 import { initializeApp } from 'firebase/app';
 import { getMessaging, getToken, onMessage } from 'firebase/messaging';
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyDnbJ0mfNO2yjzINpJnkmXz7hlGl5ItYF0",
   authDomain: "pwa-split.firebaseapp.com",
@@ -16,31 +14,9 @@ const firebaseConfig = {
   measurementId: "G-7H6ZCJSQQQ"
 };
 
-// Initialize Firebase
-// const app = initializeApp(firebaseConfig);
-
-// const firebaseConfig = {
-//     apiKey: "YOUR_API_KEY",
-//     authDomain: "YOUR_AUTH_DOMAIN",
-//     projectId: "YOUR_PROJECT_ID",
-//     storageBucket: "YOUR_STORAGE_BUCKET",
-//     messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-//     appId: "YOUR_APP_ID",
-//     measurementId: "YOUR_MEASUREMENT_ID"
-// };
-
 initializeApp(firebaseConfig);
 
 const messaging = getMessaging();
-
-// Handle incoming messages. Called when:
-// - a message is received while the app has focus
-export const onMessageListener = () =>
-  new Promise((resolve) => {
-    onMessage(messaging, (payload) => {
-      resolve(payload);
-    });
-  });
 
 export const requestForToken = () => {
     // The method getToken(): Promise<string> allows FCM to use the VAPID key credential
@@ -70,3 +46,11 @@ export const requestForToken = () => {
         });
 };
 
+// Handle incoming messages. Called when:
+// - a message is received while the app has focus
+export const onMessageListener = () =>
+    new Promise((resolve) => {
+      onMessage(messaging, (payload) => {
+        resolve(payload);
+      });
+    });

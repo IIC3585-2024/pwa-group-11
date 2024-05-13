@@ -12,6 +12,7 @@ export const post = async (model, obj) => {
       return userExists[0].id;
     } else if (model === "transactions") {
       db.transactions.add(obj);
+      console.log('Transaction added:', obj);
     }
   } catch (error) {
     console.error('Error función post:', error);

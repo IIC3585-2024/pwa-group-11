@@ -19,7 +19,6 @@ export const getTransactionsByTransactionId = async (model) => {
     const transactions = await get("transactions")
     const transactionsGrouped = {};
 
-
     for (const transaction of transactions) {
       if (!transactionsGrouped[transaction.transactionId]) {
         transactionsGrouped[transaction.transactionId] = {

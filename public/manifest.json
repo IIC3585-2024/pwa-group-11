@@ -2,8 +2,6 @@
   "theme_color": "#2596be",
   "background_color": "#2596be",
   "display": "standalone",
-  // "scope": "/pwa-group-11/",
-  // "start_url": "/pwa-group-11/",
   "scope": "/",
   "start_url": "/",
   "name": "Split Grupo 11",
@@ -19,14 +17,6 @@
         "src": "logo512.png",
         "type": "image/png",
         "sizes": "512x512"
-      }
-  ],
-  "screenshots": [  
-      {
-        "src": "logo512.png",
-        "type": "image/png",  
-        "sizes": "512x512",
-        "form_factor": "wide"
       }
   ],
   "form_factor": "wide"

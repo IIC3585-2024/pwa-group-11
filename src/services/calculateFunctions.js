@@ -3,10 +3,10 @@ export const calculateDebt = (transactions, transactionsByEventId) => {
   const credits = {}; // Lista para rastrear los créditos de cada usuario
 
   // Calcular las deudas y créditos netos de cada usuario
-  transactions.forEach(({ paidBy, userId, transactionId }) => {
+  transactions.forEach(({ id, paidBy, userId, transactionId }) => {
     const transaction = transactionsByEventId.filter(transc => transc.transactionId === transactionId)[0];
     const amount = transaction.amount / transaction.usersId.length;
-    debits[paidBy] = (debits[paidBy] || 0) - parseFloat(amount);
+    debits[paidBy] = ((debits[paidBy] || 0) - parseFloat(amount));
     credits[userId] = (credits[userId] || 0) + parseFloat(amount);
   });
 

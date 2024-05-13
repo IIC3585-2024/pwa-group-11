@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { validateUserData } from '../helpers/helpers';
 import { post } from '../api';
 
-function AddUser() {
+function AddUser({ onAddUser }) {
   const [showModal, setShowModal] = useState(false);
   const [newUserName, setNewUserName] = useState('');
 
@@ -24,7 +24,7 @@ function AddUser() {
         return;
       }
       await post("users", { name: newUserName });
-
+      onAddUser();
       setShowModal(false);
       setNewUserName('');
     } catch (error) {

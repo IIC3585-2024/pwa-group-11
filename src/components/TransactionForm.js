@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { get } from '../api';
-import { post, getUserByName } from '../api';
-import { prefix_url } from '../config';
+import { get, post, getUserByName } from '../api';
 import { validateFormData } from '../helpers/helpers';
 import '../css/transactionForm.css'; 
 
@@ -28,17 +26,15 @@ function TransactionForm() {
         const id = Date.now();
 
         const { validate, error } = validateFormData(transactionName, transactionDate, transactionAmount, transactionPaidBy, users);
-        console.log(validate, error, transactionPaidBy)
+
         if (!validate) {
             alert(error);
             return;
         } 
-
         users.map(async (user) => {
-            post("users", { name: user }).then(async (response) => {
-                const userIdPaidBy = await getUserByName(transactionPaidBy);
-                await post("transactions", { transactionId: id,  name: transactionName, date: transactionDate, amount: transactionAmount, paidBy: userIdPaidBy.id, userId: response });
-            });
+            const userIdPaidBy = await getUserByName(transactionPaidBy);
+            const userId = await getUserByName(user);
+            await post("transactions", { transactionId: id,  name: transactionName, date: transactionDate, amount: transactionAmount, paidBy: userIdPaidBy.id, userId: userId.id });
         });
           
         setTransactionName('');
@@ -46,13 +42,13 @@ function TransactionForm() {
         setTransactionAmount('');
         setTransactionPaidBy('');
         setUsers([]);
-        history.push(prefix_url + '/');
+        history.push('/');
     };
 
     const handleClickBack = () => {
         history.goBack();
     };
-    
+
     const handleAddUser = (user) => {
         setUsers([...users, user]);
         setDropdownVisible(false);
@@ -66,14 +62,14 @@ function TransactionForm() {
 
     return (
         <div className="transaction-form-container">
-            <button onClick={handleClickBack} className="back-button">Atrás</button>
+            <button onClick={handleClickBack} className="button back-button">Atrás</button>
             <h1 className="tittle-text">Nueva transacción</h1>
             <form onSubmit={handleSubmit} className="transaction-form">
                 <input
                     type="text"
                     value={transactionName}
                     onChange={e => setTransactionName(e.target.value)}
-                    placeholder="Nombre evento"
+                    placeholder="Enter transaction name"
                     required
                 />
                 <input
@@ -86,9 +82,10 @@ function TransactionForm() {
                     type="number"
                     value={transactionAmount}
                     onChange={e => setTransactionAmount(e.target.value)}
-                    placeholder="Monto"
+                    placeholder="Enter transaction amount"
                     required
                 />
+
                 <label>Pagado por:</label>
                 <select
                     value={transactionPaidBy}
@@ -121,7 +118,7 @@ function TransactionForm() {
                         </select>
                     )}  
                 </div>
-                <button type="submit">Agregar transacción</button>
+                <button type="submit" className="button button1">Add transaction</button>
             </form>
         </div>
     );
