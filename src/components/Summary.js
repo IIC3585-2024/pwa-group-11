@@ -18,7 +18,7 @@ function Summary() {
     const fechaFormateada = `${año}-${mes}-${dia}`;
     const deudor = users.filter(user => user.id === parseFloat(debt[0]))[0]
     const acreedor = users.filter(user => user.id === parseFloat(debt[1]))[0]
-    post("transactions", { transactionId: id,  name: "Pago Deuda", date: fechaFormateada, amount: -debt[2], paidBy: deudor.id, userId: acreedor.id })
+    post("transactions", { transactionId: id,  name: "Pago Deuda", date: fechaFormateada, amount: -debt[2], paidBy: deudor.id, userId: [deudor.id, acreedor.id] })
     .then(() => {
       console.log("exito");
     })

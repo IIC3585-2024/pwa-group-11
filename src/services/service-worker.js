@@ -73,7 +73,7 @@ self.addEventListener('message', (event) => {
 
 self.addEventListener('push', event => {
   const data = event.data.json();
-  console.log('Notificación recibida:', data);
+  console.log('Notificación push recibida:', data);
 
   const options = {
     body: data.body,
@@ -89,10 +89,5 @@ self.addEventListener('notificationclick', event => {
   console.log('Notificación clicada');
 
   event.notification.close();
-
-  // Aquí puedes redirigir a una página específica o ejecutar alguna acción
-  // event.waitUntil(
-  //   clients.openWindow('https://ejemplo.com')
-  // );
 });
 

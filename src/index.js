@@ -4,6 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import Routes from './services/routes';
 import * as serviceWorkerRegistration from './services/serviceWorkerRegistration';
 
+
 ReactDOM.render(
   <React.StrictMode>
     <Router>
