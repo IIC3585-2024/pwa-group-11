@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getTransactionsByTransactionId, get } from '../api';
+import '../css/container.css'
 
 function TransactionList() {
     const [transactions, setTransactions] = useState([]);
@@ -15,9 +16,10 @@ function TransactionList() {
     }, [transactions]);
 
     return (
+        <div class='flex-container'>
         <ul>
             {transactions.map(transaction => (
-                <li key={transaction.transactionId}>
+                <li class='flex-item' key={transaction.transactionId}>
                 Nombre: {transaction.name} <br />
                 Fecha: {transaction.date} <br />
                 Total: {transaction.amount} <br />
@@ -29,13 +31,14 @@ function TransactionList() {
                 Participantes: <ul>
                     {users.map((user) => {
                         if (transaction.usersId.includes(user.id)) {
-                            return <li key={user.id}>{user.name}</li>;
+                            return <li class='flex-item3' key={user.id}>{user.name}</li>;
                         }
                     })}
                 </ul>
             </li>
             ))}
         </ul>
+        </div>
     );
 }
 

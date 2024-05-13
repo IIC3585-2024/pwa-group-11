@@ -36,7 +36,7 @@ function TransactionForm() {
 
     return (
         <div className="transaction-form-container">
-            <button onClick={handleClickBack} className="back-button">Atrás</button>
+            <button onClick={handleClickBack} class="button back-button">Atrás</button>
             <h1 className="tittle-text">Nueva transacción</h1>
             <form onSubmit={handleSubmit} className="transaction-form">
                 <input
@@ -73,7 +73,7 @@ function TransactionForm() {
                     placeholder="Enter transaction users"
                     required
                 />
-                <button type="submit">Add transaction</button>
+                <button type="submit" class="button button1">Add transaction</button>
             </form>
         </div>
     );

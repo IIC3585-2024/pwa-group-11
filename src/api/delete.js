@@ -6,9 +6,13 @@ export const deleteById = async (model, id) => {
       await db.users.delete(id);
     } else if (model === "transactions") {
       await db.transactions.delete(id);
+    } else {
+      throw new Error(`Modelo desconocido: ${model}`);
     }
+
+    console.log(`Registro eliminado correctamente (Modelo: ${model}, ID: ${id})`);
   } catch (error) {
-      console.error(`Error función deleteById`, error);
-      throw error;
+    console.error(`Error al eliminar registro (Modelo: ${model}, ID: ${id}):`, error);
+    throw error;
   }
 };

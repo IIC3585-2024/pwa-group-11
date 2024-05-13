@@ -49,6 +49,16 @@ export function register(config) {
         registerValidSW(swUrl, config);
       }
     });
+
+    if ('Notification' in window) {
+      Notification.requestPermission().then(permission => {
+        if (permission === 'granted') {
+          console.log('Permisos para notificaciones concedidos');
+        } else {
+          console.log('Permisos para notificaciones denegados');
+        }
+      });
+    }
   }
 }
 
